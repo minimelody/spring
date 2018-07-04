@@ -31,6 +31,7 @@ public class MemberControllerImpl implements MemberController{
 	}
 	*/
 	@RequestMapping(value="/login.do")
+	@Override
 	public String selectOneMember(HttpServletRequest request, @RequestParam String userId, @RequestParam String userPw) {
 		//1. 값 추출
 		Member vo = new Member();
@@ -59,12 +60,6 @@ public class MemberControllerImpl implements MemberController{
 	
 	@RequestMapping(value="/enroll.do")
 	public String insertMember() {
-		return null;
-	}
-
-	@Override
-	public String selectOneMember(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
