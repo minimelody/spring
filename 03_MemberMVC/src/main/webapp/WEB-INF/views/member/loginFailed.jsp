@@ -7,6 +7,9 @@
 <title>로그인 실패</title>
 </head>
 <body>
-<h1>로그인 실패 하였습니다. (ID 또는 PW를 확인하세요)</h1>
+<script>
+	alert("로그인 실패");
+	location.href="/index.jsp";
+</script>
 </body>
 </html>
