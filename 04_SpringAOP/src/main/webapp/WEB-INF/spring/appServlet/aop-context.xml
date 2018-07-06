@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- LogAdvice Bean 객체 생성 -->
+	<bean id="log" class="org.kh.member.common.LogAdvice"/>
+	
+	<!-- AOP 등록 및 설정 -->
+	<aop:config proxy-target-class="true"> 
+		<aop:pointcut id="allPointcut" expression="execution(* org.kh.member.model.service.MemberServiceImpl.*(..))"/>
+		<!-- <aop:pointcut id="transactionPointcut" expression="execution(int org.kh.member.model.service.MemberServiceImpl.*(..))"/> -->
+		<aop:pointcut id="transactionPointcut" expression="execution(int org.kh.member.model.service.*ServiceImpl.*Member(org.kh.member.model.vo.Member))"/>
+		<aop:aspect ref="log">
+			<!-- <aop:before pointcut-ref="allPointcut" method="printLog"/> -->
+			<aop:around pointcut-ref="allPointcut" method="aroundLog"/>
+			<aop:after pointcut-ref="transactionPointcut" method="printTransactionLog"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
