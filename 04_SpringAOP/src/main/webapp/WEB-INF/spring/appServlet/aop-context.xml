@@ -6,17 +6,20 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<!-- LogAdvice Bean 객체 생성 -->
-	<bean id="log" class="org.kh.member.common.LogAdvice"/>
+	<!-- <bean id="log" class="org.kh.member.common.LogAdvice"/>  -->
 	
 	<!-- AOP 등록 및 설정 -->
-	<aop:config proxy-target-class="true"> 
-		<aop:pointcut id="allPointcut" expression="execution(* org.kh.member.model.service.MemberServiceImpl.*(..))"/>
+	<!-- <aop:config proxy-target-class="true"> 
+		<aop:pointcut id="allPointcut" expression="execution(* org.kh.member.model.service.MemberServiceImpl.*(..))"/> -->
 		<!-- <aop:pointcut id="transactionPointcut" expression="execution(int org.kh.member.model.service.MemberServiceImpl.*(..))"/> -->
-		<aop:pointcut id="transactionPointcut" expression="execution(int org.kh.member.model.service.*ServiceImpl.*Member(org.kh.member.model.vo.Member))"/>
-		<aop:aspect ref="log">
+		<!-- <aop:pointcut id="transactionPointcut" expression="execution(int org.kh.member.model.service.*ServiceImpl.*Member(org.kh.member.model.vo.Member))"/>
+		<aop:aspect ref="log">  -->
 			<!-- <aop:before pointcut-ref="allPointcut" method="printLog"/> -->
-			<aop:around pointcut-ref="allPointcut" method="aroundLog"/>
+			<!-- <aop:around pointcut-ref="allPointcut" method="aroundLog"/>
 			<aop:after pointcut-ref="transactionPointcut" method="printTransactionLog"/>
 		</aop:aspect>
-	</aop:config>
+	</aop:config>  -->
+	
+	<!-- 20180709 : 어노테이션 AOP -->
+	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 </beans>
